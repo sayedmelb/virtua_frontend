@@ -5,7 +5,13 @@ import { API_ENDPOINTS } from "../constants"
 export const prescriptionService = {
   async getAll(): Promise<Prescription[]> {
     const response = await api.get(API_ENDPOINTS.PRESCRIPTIONS)
+    //console.log('COUNT ',response?.data?.length);
     return response.data
+  },
+
+  async getCount(): Promise<Prescription[]> {
+    const response = await api.get(API_ENDPOINTS.PRESCRIPTIONS)
+    return response?.data?.length
   },
 
   async getById(id: number): Promise<Prescription> {

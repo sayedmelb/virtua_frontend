@@ -3,10 +3,13 @@ import NewPrescriptionForm from "./components/NewPrescriptionForm"
 import PatientList from "./components/PatientList"
 import PrescriptionHistory from "./components/PrescriptionHistory"
 import { Activity, Users, FileText, Plus, Menu, X } from "lucide-react"
+import { useAppDispatch, useAppSelector } from "../src/hooks"
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("dashboard")
   const [sidebarOpen, setSidebarOpen] = useState(false)
+   const list = useAppSelector((s) => s.prescriptions)
+   const patients = useAppSelector((s) => s.patients)
 
   const navigation = [
     { id: "dashboard", name: "Dashboard", icon: Activity },
@@ -109,7 +112,7 @@ export default function App() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Total Patients</p>
-                      <p className="text-3xl font-bold text-gray-900 mt-2">10</p>
+                      <p className="text-3xl font-bold text-gray-900 mt-2">{patients?.length?patients.length:'Nill'}</p>
                     </div>
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                       <Users className="w-6 h-6 text-blue-600" />
@@ -120,7 +123,7 @@ export default function App() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">Active Prescriptions</p>
-                      <p className="text-3xl font-bold text-gray-900 mt-2">21</p>
+                      <p className="text-3xl font-bold text-gray-900 mt-2">{list?.length?list.length:'Nill'}</p>
                     </div>
                     <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                       <FileText className="w-6 h-6 text-green-600" />
